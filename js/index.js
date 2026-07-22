@@ -38,6 +38,24 @@
     }
 
     window.onload = typeTitle;
+    
+// ---- Nav scroll-spy: highlight link for the section in view ----
+const navLinks = document.querySelectorAll('.navbar .links a');
+const sections = Array.from(navLinks).map(link => document.querySelector(link.getAttribute('href')));
+
+const spyObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      const id = '#' + entry.target.id;
+      navLinks.forEach(link => {
+        link.classList.toggle('current', link.getAttribute('href') === id);
+      });
+    }
+  });
+}, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+
+sections.forEach(sec => { if(sec) spyObserver.observe(sec); });
+
 
     // ---- Tab switcher for "What I Do" ----
     const tabBtns = document.querySelectorAll('.tab-btn');
