@@ -101,6 +101,36 @@
 
   .navbar .links a:hover{ color: var(--ink); } */
 
+  /* modified navbar a ,hover */
+  .navbar .links a{
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .5px;
+    white-space: nowrap;
+    transition: color .2s ease;
+    padding: 4px 2px 6px;
+    position: relative;
+  }
+
+  .navbar .links a::after{
+    content:"";
+    position: absolute;
+    left: 0;
+    right: 100%;
+    bottom: 0;
+    height: 1px;
+    background: var(--ink);
+    transition: right .25s ease;
+  }
+
+  .navbar .links a:hover{ color: var(--ink); }
+  .navbar .links a:hover::after{ right: 0; }
+
+  .navbar .links a.current{ color: var(--ink); }
+  .navbar .links a.current::after{ right: 0; }
+
   /* ---------------- HERO ---------------- */
   .hero{
     min-height: calc(100vh - 66px);
